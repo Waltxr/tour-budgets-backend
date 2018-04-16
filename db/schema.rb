@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402151029) do
+ActiveRecord::Schema.define(version: 20180416231152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,38 @@ ActiveRecord::Schema.define(version: 20180402151029) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "deals", force: :cascade do |t|
+    t.string "terms"
+    t.integer "min_guarantee"
+    t.integer "split_point"
+    t.integer "potential_split"
+    t.integer "artist_percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shows", force: :cascade do |t|
+    t.date "date"
+    t.string "city"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.integer "capacity"
+    t.integer "avg_ticket_price"
+    t.integer "potential"
+    t.string "location"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
